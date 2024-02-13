@@ -87,7 +87,7 @@ export default function Index() {
     <Page>
       <ui-title-bar title="Remix app template">
         <button variant="primary" onClick={generateProduct}>
-          Generate a product
+          Generate product
         </button>
       </ui-title-bar>
       <GoogleFormModals />
