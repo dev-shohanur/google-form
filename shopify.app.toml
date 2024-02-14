@@ -3,7 +3,7 @@
 client_id = "f5e3edcc96ca660b4d4b56250a493c61"
 name = "google-form"
 handle = "google-form"
-application_url = "https://rock-gore-filename-kernel.trycloudflare.com"
+application_url = "https://google-form.fly.dev"
 embedded = true
 
 [build]
@@ -17,9 +17,7 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://rock-gore-filename-kernel.trycloudflare.com/auth/callback",
-  "https://rock-gore-filename-kernel.trycloudflare.com/auth/shopify/callback",
-  "https://rock-gore-filename-kernel.trycloudflare.com/api/auth/callback"
+  "https://google-form.fly.dev/api/auth/callback"
 ]
 
 [webhooks]
