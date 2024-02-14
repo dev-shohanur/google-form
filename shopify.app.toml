@@ -3,7 +3,7 @@
 client_id = "f5e3edcc96ca660b4d4b56250a493c61"
 name = "google-form"
 handle = "google-form"
-application_url = "https://verified-equally-integrity-mysimon.trycloudflare.com"
+application_url = "https://rock-gore-filename-kernel.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://verified-equally-integrity-mysimon.trycloudflare.com/auth/callback",
-  "https://verified-equally-integrity-mysimon.trycloudflare.com/auth/shopify/callback",
-  "https://verified-equally-integrity-mysimon.trycloudflare.com/api/auth/callback"
+  "https://rock-gore-filename-kernel.trycloudflare.com/auth/callback",
+  "https://rock-gore-filename-kernel.trycloudflare.com/auth/shopify/callback",
+  "https://rock-gore-filename-kernel.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

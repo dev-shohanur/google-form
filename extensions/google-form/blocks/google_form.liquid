@@ -1,0 +1,332 @@
+<button class="modalOpenBtn {{ block.id }}">{{ block.settings.button_text }}</button>
+
+<div class="modal-mainWrapper">
+  <div class="modal-{{ block.id }}">
+    {% comment %} <div class="google-form-modal-title-{{ block.id }}"></div> {% endcomment %}
+    <div class="modal-container-{{ block.id }}">
+      {% if block.settings.title %}
+        <div class="google-form-modal-title">
+          <h1>{{ block.settings.title }}</h1>
+        </div>
+      {% endif %}
+      <div class="modal-header" onClick="modalClose()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+          <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+        </svg>
+      </div>
+
+      <div class="google-form-wrapper">
+        <iframe
+          src="{{block.settings.form_url}}"
+          width="640"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          >Loading…</iframe
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+     .modal-mainWrapper{
+     display:none}
+     .modal-{{ block.id }} {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100vw;
+       height: 100vh;
+       z-index: 9;
+       display:flex;
+       justify-content: center;
+       align-items: center;
+       backdrop-filter: blur(1px);
+     }
+     .modal-{{ block.id }} .modal-container-{{ block.id }} {
+       padding: {{block.settings.modal_padding}}px;
+       border-radius: {{block.settings.modal_border_radius}}px;
+       height: {{block.settings.modal_height}}vh;
+       background-color: {{block.settings.background_color}};
+       position:relative;
+       display: flex;
+       flex-direction: column;
+       border:{{block.settings.border_style}} {{block.settings.border_color}};
+       border-width:{{block.settings.modal_border}}px;
+
+       /* overflow: hidden; */
+       /* margin: 50px; */
+     }
+
+     .modal-{{ block.id }} .google-form-modal-title {
+       text-align: {{block.settings.title_alignment}};
+       padding:0;
+       margin:0;
+    }
+     .modal-{{ block.id }} .google-form-modal-title h1 {
+       font-size: {{block.settings.title_size}}px;
+       color:{{block.settings.title_color}};
+    }
+
+     .modal-{{ block.id }} .modal-header{
+       cursor: pointer;
+          width: 40px;
+       height: 40px;
+       position: absolute;
+       right: 15px;
+       top: 15px;
+       display: flex;
+       justify-content: center;
+       background: #fff;
+       padding: 10px;
+       border-radius: 100%;
+       margin: 10px;
+       align-items: center;
+           box-shadow: inset 0px 0px 20px 0px black;
+
+     }
+
+     /*
+     .modal .modal-container iframe {
+       margin: 50px;
+     } */
+
+    .modal-{{ block.id }} .google-form-wrapper {
+       height: 100%;
+       {% comment %} padding:20px 0; {% endcomment %}
+     }
+
+     .modal-{{ block.id }} .google-form-wrapper iframe{
+      height:inherit;
+    }
+
+    .modalOpenBtn.{{ block.id }}{
+      padding: {{block.settings.button_y_padding}}px {{block.settings.button_x_padding}}px;
+      background: {{block.settings.button_background}};
+      border: {{block.settings.button_border_width}}px {{block.settings.button_border_style}} {{block.settings.button_border_color}};
+      font-size: {{block.settings.button_font_size}}px;
+      border-radius: {{block.settings.button_border_radius}}px;
+      color: {{block.settings.button_font_color}};
+      cursor: pointer;
+    }
+
+    {% if block.settings.button_custome_width > 0 %}
+
+    .modalOpenBtn.{{ block.id }}{
+      width: {{block.settings.button_custome_width}}%;
+    }
+
+  {% endif %}
+</style>
+
+<script></script>
+{% comment %} <script src="{{ 'script.js' | asset_url }}" /> {% endcomment %}
+{% comment %} <link type="text/css" href="{{ 'styles.css' | asset_url }}" rel="stylesheet"> {% endcomment %}
+{% schema %}
+{
+  "name": "Google Form",
+  "target": "section",
+  "stylesheet": "styles.css",
+  "javascript": "script.js",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 14,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_y_padding",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Y Padding",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "button_x_padding",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Button X Padding",
+      "default": 7
+    },
+    {
+      "type": "range",
+      "id": "button_custome_width",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Button Custom Width",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Width",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "button_border_style",
+      "label": "Button Border Style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "double",
+          "label": "Double"
+        }
+      ],
+      "default": "dashed"
+    },
+    {
+      "type": "color",
+      "id": "button_font_color",
+      "label": "Button Font Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "button_background",
+      "label": "Button Background Color",
+      "default": "linear-gradient(#ffffff, #000000)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Form Title"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 16,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 30
+    },
+    {
+      "type": "text_alignment",
+      "id": "title_alignment",
+      "label": "Title alignment",
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "url",
+      "id": "form_url",
+      "label": "Google Form Url"
+    },
+    {
+      "type": "range",
+      "id": "modal_height",
+      "min": 30,
+      "max": 100,
+      "step": 1,
+      "unit": "vh",
+      "label": "modal Height",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "modal_padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "modal Padding",
+      "default": 10
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border Style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "double",
+          "label": "Double"
+        }
+      ],
+      "default": "dashed"
+    },
+    {
+      "type": "range",
+      "id": "modal_border",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "modal Border",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "modal_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "modal Border Radius",
+      "default": 30
+    },
+    { "type": "color", "id": "border_color", "label": "Border Colour", "default": "#ffffff" },
+    { "type": "color", "id": "background_color", "label": "Background Colour", "default": "#ffffff" }
+  ]
+}
+{% endschema %}

@@ -2,7 +2,7 @@ import { Button, Frame, Modal, TextContainer } from "@shopify/polaris";
 import { useState, useCallback, useRef } from "react";
 
 export default function GoogleFormModals() {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   const buttonRef = useRef(null);
 
@@ -19,7 +19,7 @@ export default function GoogleFormModals() {
   );
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "100vh", overflow: "hidden" }}>
       <Frame>
         {activator}
         <Modal
@@ -42,7 +42,7 @@ export default function GoogleFormModals() {
             <iframe
               src="https://docs.google.com/forms/d/e/1FAIpQLSeU4OlEQnRbjtWuBMi_5wYGs3QodBasBLzsNd9AIZTzzWY51A/viewform?embedded=true"
               width="100%"
-              height="1000px"
+              height="100%"
               frameBorder="0"
               marginHeight="{0}"
               marginWidth="{0}"
